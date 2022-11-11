@@ -18,6 +18,10 @@ p{
     margin-bottom: 15px;
 }
 
+div.errmsg{
+  color: red;
+}
+
 p.error{
     background: red;
     color: white;
@@ -105,5 +109,9 @@ table.masterlist{
 
   .errmsg{
     margin: 20px 0;
+    
   }
+
+  
  
+  
