@@ -62,7 +62,8 @@
                             <td>" .$user['last_name'] . "</td>
                             <td>" .$user['last_login'] . "</td>
                             <td> <a href=\"modify-user.php?user_id={$user['id']}\">Edit</a></td>
-                            <td> <a href=\"delete-user.php?user_id={$user['id']}\">Delete</a></td>
+                            <td> <a href=\"delete-user.php?user_id={$user['id']}\" 
+                            onclick=\"return confirm('Are You sure?');\">Delete</a></td>
                       </tr>";
             }
        

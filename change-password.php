@@ -45,13 +45,11 @@
 
 	if (isset($_POST['submit'])) {
 		$user_id = $_POST['user_id'];
-		$first_name = $_POST['first_name'];
-		$last_name = $_POST['last_name'];
-		$email = $_POST['email'];
+		$password = $_POST['password'];
 
 
 		// checking required fields
-		$req_fields = array('user_id','first_name', 'last_name', 'email');
+		$req_fields = array('user_id','password');
 
 		$errors1 = array_merge($errors1,check_req_fields($req_fields));
                                             //user define function
@@ -73,36 +71,18 @@
         }*/
 
 		// checking max length
-		$max_len_fields = array('first_name' => 50, 'last_name' =>100, 'email' => 100);
+		$max_len_fields = array('password'=>40);
 
 		$errors1 = array_merge($errors1,check_max_len($max_len_fields));
                                         //user define function
-		// checking email address
-		if (!is_email($_POST['email'])) {
-			$errors1[] = 'Email address is invalid.';
-		}
-
-		// checking if email address already exists
-		$email = mysqli_real_escape_string($connection, $_POST['email']);
-		$query = "SELECT * FROM user WHERE email = '{$email}' AND id != {$user_id} LIMIT 1";
-
-		$result_set = mysqli_query($connection, $query);
-
-		if ($result_set) {
-			if (mysqli_num_rows($result_set) == 1) {
-				$errors1[] = 'Email address already exists';
-			}
-		}
+	
 
         if (empty($errors1)) {
 			// no errors found... adding new record
-			$first_name = mysqli_real_escape_string($connection, $_POST['first_name']);
-			$last_name = mysqli_real_escape_string($connection, $_POST['last_name']);
-		
-			// email address is already sanitized
+			$password = mysqli_real_escape_string($connection, $_POST['password']);
 			$hashed_password = sha1($password);
 
-			$query = "UPDATE user SET first_name = '{$first_name}', last_name = '{$last_name}', email = '{$email}'WHERE id ={$user_id} LIMIT 1";
+			$query = "UPDATE user SET  passw = '{$hashed_password}'WHERE id ={$user_id} LIMIT 1";
 
 			$result = mysqli_query($connection, $query);
 
@@ -110,7 +90,7 @@
 				// query successful... redirecting to users page
 				header('Location: users.php?user_modified=true');
 			} else {
-				$errors1[] = 'Failed to modify the record.';
+				$errors1[] = 'Failed to update the password.';
 			}
 
 
@@ -127,7 +107,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vie/Modify User</title>
+    <title>Change Password</title>
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
@@ -138,7 +118,7 @@
     </header>
 
     <main>
-        <h1 class="aa">Vie / Modify User <span><a href="users.php">Back to User List</a></span></h1>
+        <h1 class="aa">Change Password <span><a href="users.php">Back to User List</a></span></h1>
 
         <?php
         
@@ -146,31 +126,36 @@
                 display_errors($errors1);
             }
         ?>
-        <form action="modify-user.php" method="post" class="userform">
+        <form action="change-password.php" method="post" class="userform">
             <input type="hidden" name="user_id" value=" <?php echo $user_id; ?>">
             <p>
                   <label for="">First Name:</label>
-                  <input type="text" name="first_name" <?php echo 'value="' . $first_name . '"';?>>
+                  <input type="text" name="first_name" <?php echo 'value="' . $first_name . '"';?>disabled>
             </p>
 
             <p>
                   <label for="">Last Name:</label>
-                  <input type="text" name="last_name" <?php echo 'value="' . $last_name . '"';?>>
+                  <input type="text" name="last_name" <?php echo 'value="' . $last_name . '"';?>disabled>
             </p>
 
             <p>
                   <label for="">Email Address:</label>
-                  <input type="email" name="email" <?php echo 'value="' . $email . '"';?>>
+                  <input type="email" name="email" <?php echo 'value="' . $email . '"';?>disabled>
             </p>
 
             <p>
-                  <label for="">Password:</label>
-                  <span>*******</span> | <a href="change-password.php?user_id=<?php echo $user_id; ?>">Change Passord</a>
+                  <label for="">New Password:</label>
+                  <input type="password" name="password" id="password">
+            </p>
+
+            <p>
+                  <label for="">Show Password:</label>
+                  <input type="checkbox" name="showpassword" id="showpassword" style="width: 20px; height: 20px">
             </p>
 
             <p>
                 <label for="">&nbsp;</label>
-               <button type="submit" name="submit">Save</button>
+               <button type="submit" name="submit">Update Password</button>
             </p>
 
 
@@ -178,6 +163,17 @@
 
 
     </main>
-    
+    <script src="js/jquery.js"> </script>
+    <script>
+        $(document).ready(function(){
+            $('#showpassword').click(function(){
+                if($('#showpassword').is(':checked')){
+                    $('#password').attr('type','text');
+                }else{
+                    $('#password').attr('type','password');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
