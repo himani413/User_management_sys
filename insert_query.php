@@ -3,13 +3,7 @@
 ?>
 
 <?php
-    /*
-        insert into table_name(
-            column1, column2, etc
-        ) values (
-            value1, value2, etc
-        );
-    */ 
+     
     $first_name = 'Himani';
     $last_name = 'Perera';
     $email = 'pereradinithi@gmail.com';
@@ -19,6 +13,7 @@
     $hashed_password = sha1($password);
     //echo "hashed password: {$hashed_password}";
 
+    //insert into table_name(column1, column2, etc) values (value1, value2, etc);
     $query = "INSERT INTO user (first_name,last_name,email,passw,is_deleted) VALUES ('{$first_name}','{$last_name}','{$email}','{$hashed_password}',{$is_deleted})";
     //echo $query;
 
@@ -29,8 +24,6 @@
     }else{
         echo "Database query failed.";
     }
-
-
 ?>
 
  <!DOCTYPE html>

@@ -133,7 +133,7 @@
                   <input type="text" name="first_name" <?php echo 'value="' . $first_name . '"';?>disabled>
             </p>
 
-            <p>
+            <p >
                   <label for="">Last Name:</label>
                   <input type="text" name="last_name" <?php echo 'value="' . $last_name . '"';?>disabled>
             </p>

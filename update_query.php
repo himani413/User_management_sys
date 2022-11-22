@@ -2,10 +2,8 @@
     require_once('include/connection.php');
 ?>
 <?php
-    /* UPDATE table_name
-    SET column_1 = value_1, column_2 = value_2
-    WHERE colum_namee = value
-    LIMIT 1;
+    /* UPDATE table_name SET column_1 = value_1, column_2 = value_2
+    WHERE colum_namee = value LIMIT 1;
     */
 
     $query = "UPDATE user SET first_name = 'Himal' WHERE id = 2 LIMIT 1";

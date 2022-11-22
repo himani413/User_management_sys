@@ -30,21 +30,6 @@
 		$errors1 = array_merge($errors1,check_req_fields($req_fields));
                                             //user define function
 
-        /*if(empty(trim($_POST['first_name']))){
-            $errors1[] = 'First Name is required.';
-        }
-
-        if(empty(trim($_POST['last_name']))){
-            $errors1[] = 'Last Name is required.';
-        }
-
-        if(empty(trim($_POST['email']))){
-            $errors1[] = 'Email is required.';
-        }
-
-        if(empty(trim($_POST['password']))){
-            $errors1[] = 'Password is required.';
-        }*/
 
 		// checking max length
 		$max_len_fields = array('first_name' => 50, 'last_name' =>100, 'email' => 100, 'password' => 40);
@@ -92,7 +77,7 @@
 			}
 
 
-		}
+		}//else{ display the errors array using foreach loop}
 	}
 
 ?>

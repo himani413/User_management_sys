@@ -2,11 +2,8 @@
     require_once('include/connection.php');
 ?>
 <?php
-    /* DELETE FROM table_name
-    WHERE colum_namee = value
-    LIMIT 1;
-    */
-
+    // DELETE FROM table_name WHERE colum_namee = value LIMIT 1;
+    
     $query = "DELETE FROM user WHERE id = 3 LIMIT 1";
     $result_set = mysqli_query($connection, $query);
 

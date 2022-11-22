@@ -1,7 +1,6 @@
 <?php
     require_once('include/connection.php');
 ?>
-
 <?php
 
     $query = "SELECT id, first_name, last_name, email FROM user";
@@ -32,8 +31,6 @@
                             <td>" .$records['email'] . "</td>
                       </tr>";
            }
-
-
            echo "</table>" ;
     }else{
         echo "Database query failed.";
@@ -50,7 +47,7 @@
     <style>
        
        table{border-collapse: collapse; }
-       td,th{padding: 15px; border: 1px solid black;}
+       td,th{padding: 15px;}
         
     </style>
  </head>

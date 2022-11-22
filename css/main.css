@@ -16,6 +16,7 @@ body{
 }
 p{
     margin-bottom: 15px;
+    
 }
 
 div.errmsg{
@@ -80,6 +81,7 @@ header{
 table.masterlist{
     width: 100%;
     border-collapse: collapse;
+    
  }
 
   table.masterlist th{

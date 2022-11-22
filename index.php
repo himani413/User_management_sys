@@ -47,7 +47,8 @@
       
                if(mysqli_num_rows($result_set) == 1){
                
-                  //valid user found
+                  //valid user found //echo "valid user found";
+                  
                   $user = mysqli_fetch_assoc($result_set); //storinf the reusult row as an associative array
 
                   // storing the result values in a session associative array.
@@ -68,9 +69,9 @@
                   //username or password invalid.
                   $errors[] = 'Invalid Username / Password.';
                }
-            }
+            }//else{echo "database query failed."}
 
-      }
+      }//else{ display the errors array using foreach loop}
 
       
    }

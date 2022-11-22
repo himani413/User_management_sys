@@ -1,6 +1,7 @@
 <?php
-
-    $connection = mysqli_connect('localhost','root','','userdb');
+    //mysqli_connect($server, $dbuser, $dbpassword, $dbname);
+    
+    $connection = mysqli_connect("localhost","root","","userdb");
 
     //checking the connection
 
